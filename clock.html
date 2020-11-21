@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+	<style>div.dig, div.hour, div.min, div.sec {
+    position:absolute;
+}
+div.hour, div.min, div.sec {
+    width:2px;
+    height:2px;
+    font-size:2px;
+}
+div.dig {
+    width:30px;
+    height:30px;
+    font-family:arial,verdana,sans-serif;
+    font-size:10px;
+    color:#000000;
+    text-align:center;
+    padding-top:10px
+}
+div.min {
+    background:#0000FF;
+}
+div.hour {
+    background:#000000;
+}
+div.sec {
+    background:#FF0000;
+}
+</style>
+</head>
+<html>
+<body onload="clock()">
+
+
+
+<td>
+<div style="width:120px;height:100px;position:relative;left:58px;top:50px;">
+ <div id="dig1" class="dig" style="top: -49.823px; left: 5.6814px;">1</div>
+ <div id="dig2" class="dig" style="top: -35.2232px; left: 20.5112px;">2</div>
+ <div id="dig3" class="dig" style="top: -15.1496px; left: 25.9997px;">3</div>
+ <div id="dig4" class="dig" style="top: 4.96459px; left: 20.6614px;">4</div>
+ <div id="dig5" class="dig" style="top: 19.6749px; left: 5.94126px;">5</div>
+ <div id="dig6" class="dig" style="top: 24.9996px; left: -14.1765px;">6</div>
+ <div id="dig7" class="dig" style="top: 19.4976px; left: -34.2464px;">7</div>
+ <div id="dig8" class="dig" style="top: 4.65796px; left: -48.8363px;">8</div>
+ <div id="dig9" class="dig" style="top: -15.5025px; left: -53.9968px;">9</div>
+ <div id="dig10" class="dig" style="top: -35.527px; left: -48.3314px;">10</div>
+ <div id="dig11" class="dig" style="top: -49.9953px; left: -33.3734px;">11</div>
+ <div id="dig12" class="dig" style="top: -54.9914px; left: -13.1715px;">12</div>
+
+ <div id="hour1" class="hour" style="top: 0px; left: 0px;"></div>
+ <div id="hour2" class="hour" style="top: 6.21316px; left: -5.03951px;"></div>
+ <div id="hour3" class="hour" style="top: 12.4263px; left: -10.079px;"></div>
+ <div id="hour4" class="hour" style="top: 18.6395px; left: -15.1185px;"></div>
+
+ <div id="min1" class="min" style="top: 0px; left: 0px;"></div>
+ <div id="min2" class="min" style="top: 2.47819px; left: 7.60648px;"></div>
+ <div id="min3" class="min" style="top: 4.95639px; left: 15.213px;"></div>
+ <div id="min4" class="min" style="top: 7.43458px; left: 22.8194px;"></div>
+ <div id="min5" class="min" style="top: 9.91278px; left: 30.4259px;"></div>
+
+ <div id="sec1" class="sec" style="top: 0px; left: 0px;"></div>
+ <div id="sec2" class="sec" style="top: 1.65706px; left: -7.8265px;"></div>
+ <div id="sec3" class="sec" style="top: 3.31412px; left: -15.653px;"></div>
+ <div id="sec4" class="sec" style="top: 4.97118px; left: -23.4795px;"></div>
+ <div id="sec5" class="sec" style="top: 6.62825px; left: -31.306px;"></div>
+ <div id="sec6" class="sec" style="top: 8.28531px; left: -39.1325px;"></div>
+</div>
+</td>
+<script>
+	var H='....';
+var H=H.split('');
+var M='.....';
+var M=M.split('');
+var S='......';
+var S=S.split('');
+var Ypos=0;
+var Xpos=0;
+var Ybase=8;
+var Xbase=8;
+var dots=12;
+
+function clock(){
+var time=new Date ();
+var secs=time.getSeconds();
+var sec=-1.57 + Math.PI * secs/30;
+var mins=time.getMinutes();
+var min=-1.57 + Math.PI * mins/30;
+var hr=time.getHours();
+var hrs=-1.57 + Math.PI * hr/6 + Math.PI*parseInt(time.getMinutes())/360;
+for (i=0; i < dots; ++i){
+document.getElementById("dig" + (i+1)).style.top=0-15+40*Math.sin(-0.49+dots+i/1.9).toString() + "px";
+document.getElementById("dig" + (i+1)).style.left=0-14+40*Math.cos(-0.49+dots+i/1.9).toString() + "px";
+}
+for (i=0; i < S.length; i++){
+document.getElementById("sec" + (i+1)).style.top =Ypos+i*Ybase*Math.sin(sec).toString() + "px";
+document.getElementById("sec" + (i+1)).style.left=Xpos+i*Xbase*Math.cos(sec).toString() + "px";
+}
+for (i=0; i < M.length; i++){
+document.getElementById("min" + (i+1)).style.top =Ypos+i*Ybase*Math.sin(min).toString() + "px";
+document.getElementById("min" + (i+1)).style.left=Xpos+i*Xbase*Math.cos(min).toString() + "px";
+}
+for (i=0; i < H.length; i++){
+document.getElementById("hour" + (i+1)).style.top =Ypos+i*Ybase*Math.sin(hrs).toString() + "px";
+document.getElementById("hour" + (i+1)).style.left=Xpos+i*Xbase*Math.cos(hrs).toString() + "px";
+} 
+setTimeout(clock, 50);
+}
+</script
+</body>
+</html>
